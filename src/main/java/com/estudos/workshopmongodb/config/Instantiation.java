@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
 
-import static java.util.Arrays.asList;
-
 @Configuration
 public class Instantiation implements CommandLineRunner {
 
