@@ -3,6 +3,7 @@ package com.estudos.workshopmongodb.dto;
 import com.estudos.workshopmongodb.entity.User;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 public class UserDto implements Serializable {
 
