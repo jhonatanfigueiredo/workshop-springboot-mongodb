@@ -1,6 +1,7 @@
 package com.estudos.workshopmongodb.resource;
 
 import com.estudos.workshopmongodb.dto.UserDto;
+import com.estudos.workshopmongodb.entity.Post;
 import com.estudos.workshopmongodb.entity.User;
 import com.estudos.workshopmongodb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,12 @@ public class UserResource {
         obj.setId(id);
         obj = service.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 
 }
