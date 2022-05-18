@@ -1,6 +1,7 @@
 package com.estudos.workshopmongodb.config;
 
 import com.estudos.workshopmongodb.dto.AuthorDto;
+import com.estudos.workshopmongodb.dto.CommentDto;
 import com.estudos.workshopmongodb.entity.Post;
 import com.estudos.workshopmongodb.entity.User;
 import com.estudos.workshopmongodb.repository.PostRepository;
@@ -40,6 +41,13 @@ public class Instantiation implements CommandLineRunner {
         postRepository.deleteAll();
         Post post1 = new Post(null, sdf.parse("17/05/2022"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDto(maria));
         Post post2 = new Post(null, sdf.parse("18/05/2022"), "Bom dia", "Acordei feliz hoje!", new AuthorDto(maria));
+
+        CommentDto c1 = new CommentDto("Boa viagem, mano!", post1.getDate(), new AuthorDto(alex));
+        CommentDto c2 = new CommentDto("Aproveite!", post1.getDate(), new AuthorDto(bob));
+        CommentDto c3 = new CommentDto("Tenha um ótima dia!", post2.getDate(), new AuthorDto(alex));
+
+        post1.getComments().addAll(Arrays.asList(c1, c2));
+        post2.getComments().add(c3);
         postRepository.saveAll(Arrays.asList(post1, post2));
 
         maria.getPosts().addAll(Arrays.asList(post1, post2));
